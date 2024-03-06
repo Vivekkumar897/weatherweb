@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background: fixed;
+    background-color: rgb(10, 15, 15);
+}
+
+.card {
+    width: 90%;
+    max-width: 470px;
+    background: linear-gradient(135deg, #00feba, #5b548a);
+    color: #ebfffc;
+    margin: 100px auto 0;
+    border-radius: 20px;
+    padding: 40px 35px;
+    text-align: center;
+}
+
+.search {
+    
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Change to column layout on small screens */
+    align-items: center;
+}
+
+.search input {
+    border: 0;
+    outline: 0;
+    background: #ebfffc;
+    padding: 10px 25px;
+    height: 60px;
+    border-radius: 30px;
+    flex: 1;
+    margin-bottom: 16px; /* Add space between input and button on small screens */
+    font-size: 18px;
+    flex-direction: row;
+    display: flex;
+}
+
+.search button {
+    border: 0;
+    outline: 0;
+    margin-bottom: 16px;
+    margin-left: 5px;
+    flex-direction: row;
+
+    background: #ebfffc;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    cursor: pointer;
+}
+
+.search button img {
+    width: 50%;
+}
+
+.weather-icon {
+    width: 170px;
+    margin-top: 30px;
+}
+
+.weather h1 {
+    font-size: 80px;
+    font-weight: 500;
+}
+
+.weather h2 {
+    font-size: 45px;
+    font-weight: 400;
+    margin-top: -10px;
+}
+
+.details {
+    display: flex;
+    flex-direction: row; /* Change to column layout on small screens */
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin-top: 50px;
+}
+
+.col {
+    display: flex;
+     flex-direction: row; /* Change to column layout on small screens */
+    align-items: center;
+    text-align: center; /* Center text on small screens */
+    margin-bottom: 20px; /* Add space between columns on small screens */
+}
+
+.col img {
+    width: 40px;
+    margin-bottom: 10px; /* Add space between image and text on small screens */
+    margin-left: 5px;
+}
+
+.humidity, .wind {
+    margin-left: 10px;
+    font-size: 28px;
+    margin-top: -6px;
+}
+
+/* Media query for small screens */
+@media screen and (max-width: 300px) {
+    .search {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search input {
+        margin-right: 0;
+        flex-direction: row;
+    }
+
+    .details {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .col {
+        margin-bottom: 0;
+        flex-direction: column;
+
+    }
+}

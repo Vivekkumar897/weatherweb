@@ -1,0 +1,98 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weatherapp</title>
+    <link rel="stylesheet" href="style.css">
+ </head>
+ <body>
+    <div class="card">
+        <div class="search">
+            <input type="text" placeholder="enter city name" spellcheck="false">
+            <button><img src="weather-app-img/images/search.png" alt="error"></button>
+        </div>
+        <div class="weather">
+            <img src="weather-app-img/images/rain.png" alt="error" class="weather-icon">
+            <h3 class="condition"></h3>
+            <h1 class="temp"></h1>
+            <h2 class="city">India</h2>
+            
+            <div class="details">
+                <div class="col">
+                    <img src="weather-app-img/images/humidity.png" alt="error">
+                    <div>
+                        <p class="humidity"></p>
+                        <p>Humidity</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <img src="weather-app-img/images/wind.png"alt="error">
+                    <div>
+                        <p class="wind"></p>
+                        <p>Wind Speed</p>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+
+    </div>
+    <script>
+        
+        const apikey="a1cb2b16bab265641821d921d0803945";
+        const  apiUrl="https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+
+        const searchBox= document.querySelector(".search input");
+        const searchBtn =document.querySelector(".search button");
+
+        async function checkWeather(city){
+            const response=await fetch(apiUrl+ city +`&appid=${apikey}`);
+            var data = await response.json();
+
+            let temp = "tempereture is"+Math.round(data.main.temp)+"°C" ;//getting data
+            let condition = "weather seems to be"+data.weather[0].main;//weather condition
+            let wind = "today wind speed is"+data.wind.speed+" Km/h";
+            let humidity = "today humidity is "+data.main.humidity+" %";
+           let city1 = "todays weather candition in "+data.name;
+           let thanks = "thank you  have a good day"  
+           
+           
+           const utterance4 = new SpeechSynthesisUtterance(city1); // using librery
+            speechSynthesis.speak(utterance4);
+
+            const utterance = new SpeechSynthesisUtterance(temp); // using librery
+            speechSynthesis.speak(utterance);
+
+            const utterance1 = new SpeechSynthesisUtterance(condition); // using librery
+            speechSynthesis.speak(utterance1);
+
+            const utterance2 = new SpeechSynthesisUtterance(wind); // using librery
+            speechSynthesis.speak(utterance2);
+
+            const utterance3 = new SpeechSynthesisUtterance(humidity); // using librery
+            speechSynthesis.speak(utterance3);
+
+            const utterance5 = new SpeechSynthesisUtterance(thanks); // using librery
+            speechSynthesis.speak(utterance5);
+
+
+
+
+
+            console.log(data);
+            document.querySelector(".city").innerHTML=data.name;
+            document.querySelector(".temp").innerHTML=Math.round(data.main.temp)+"°C";
+            document.querySelector(".humidity").innerHTML=data.main.humidity+" %";
+            document.querySelector(".wind").innerHTML=data.wind.speed+" Km/h";
+            document.querySelector(".condition").innerHTML="( "+data.weather[0].main+" )";
+
+
+        }
+        searchBtn.addEventListener("click",()=>{checkWeather(searchBox.value);})
+        
+
+
+    </script>
+ </body>
+ </html>
